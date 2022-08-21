@@ -59,6 +59,8 @@ def get_sync_results(repos, sync_direction="TO"):
                         results[sync_label]["repo_name"] = repo.name
                         results[sync_label]["path"] = p
                         results[sync_label]["content"] = start_str + result[0] + stop_str
+                        results[sync_label]["start_str"] = start_str
+                        results[sync_label]["stop_str"] = stop_str
                         
     return results
 
@@ -81,6 +83,8 @@ if __name__ == "__main__":
         decoded_content = contents.decoded_content.decode()
         sha = contents.sha
         new_decoded_content = decoded_content.replace(old_replace_content, new_replace_content)
+        new_decoded_content = new_decoded_content.replace(to_results[sync_label]["start_str"], from_results[sync_label]["start_str"])
+        new_decoded_content = new_decoded_content.replace(to_results[sync_label]["stop_str"], from_results[sync_label]["stop_str"])
         repo.update_file(from_results[sync_label]["path"], "sync from " + sync_label, new_decoded_content, sha=sha)
         
     
