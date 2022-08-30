@@ -1,0 +1,38 @@
+name: Sync projects
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron:  '0 12 * * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Update project repository
+      run: |-
+        python sync_projects.py
+      env:
+        ACCESS_TOKEN_GITHUB: ${{secrets.ACCESS_TOKEN_GITHUB}}
+        REPO_PATHS_GITHUB: ${{secrets.REPO_PATHS_GITHUB}}
+    - name: Commit and push if changed
+      run: |-
+        git diff
+        git config --global user.email "sync-bot@example.com"
+        git config --global user.name "sync-bot"
+        git add -A
+        git commit -m "Sync" || exit 0
+        git push
