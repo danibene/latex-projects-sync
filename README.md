@@ -8,7 +8,7 @@ It specifically focuses on syncing .bib (BibTeX) and .tex (LaTeX) files, identif
 
 - Supports `.bib` and `.tex` files for synchronization.
 - Allows specifying sync direction (`TO` or `FROM`) to control sync flow.
-- Uses GitHub tokens for authentication, enhancing security.
+- Uses GitHub tokens for authentication.
 - Automates the tedious process of manually ensuring consistency across multiple LaTeX projects.
 
 ## Prerequisites
