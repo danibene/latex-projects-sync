@@ -1,8 +1,8 @@
 # Latex Projects Sync
 
-The `latex-projects-sync` tool is designed to facilitate the synchronization of LaTeX projects across multiple GitHub repositories, which can be in turn synchronized with Overleaf.
+This project is designed to facilitate the synchronization of LaTeX projects across multiple GitHub repositories, which can be in turn synchronized with Overleaf.
 
-It specifically focuses on syncing .bib (BibTeX) and .tex (LaTeX) files. The tool identifies segments marked for synchronization within these files and ensures they are consistent across different repositories.
+It specifically focuses on syncing .bib (BibTeX) and .tex (LaTeX) files, identifying segments marked for synchronization within these files and ensures they are consistent across different repositories. I personally used it for updating my thesis while working on an article that was included as a chapter at the same time.
 
 ## Features
 
